@@ -1,0 +1,71 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{% block head_title %}Greetings, man!{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+    	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+		<link rel="stylesheet" href="{% static 'css/cover.css' %}">
+        <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+    </head>
+    <body>
+<div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Let it sell</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="#">Contacts</a></li>
+                  <li><a href="#">Sign In</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h1 class="cover-heading">Hello, Anonimous</h1>
+            <p class="lead">Don't hesitate to go further into my site.</p>
+            <p class="lead">
+              <a href="{% url 'shop:shop' %}" class="btn btn-lg btn-success">Push me!</a>
+            </p>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>Don't know what to write here, I'll do it later.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    	<!-- /container -->        
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="static/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+		<!-- Latest compiled and minified JavaScript -->
+        <script src="{% static 'js/vendor/bootstrap.min.js' %}">
+		<script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+        <script src="{% static 'js/main.js' %}">
+		<script src="{% static 'js/plugins.js' %}">
+    </body>
+</html>
