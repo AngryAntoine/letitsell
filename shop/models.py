@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
@@ -14,10 +15,26 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('shop:product_index_by_category', args=[self.slug])
+
 
 @python_2_unicode_compatible
 class Product(models.Model):
-    #category = models.ForeignKey(Category, related_name='products')
+    STATUS_CHOICES = (
+        ('available', 'Available'),
+        ('sale', 'For Sale'),
+        ('onstock', 'On Stock'),
+        ('notavailble', 'Not Available'),
+    )
+
+    status = models.CharField(max_length=10,
+                              choices=STATUS_CHOICES,
+                              default='available')
+
+    category = models.ForeignKey(Category, verbose_name='category', related_name='products')
+
+    slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
     name = models.CharField(max_length=200, db_index=True)
 
@@ -37,3 +54,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('shop:product_detail', args=[self.id, self.slug])
