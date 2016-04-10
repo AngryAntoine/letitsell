@@ -1,21 +1,19 @@
-from __future__ import unicode_literals
-
 from django.db import models
+from django.utils import timezone
 
-# Create your models here.
 
-from django.db import models
+class Post(models.Model):
+    author = models.ForeignKey('auth.User')
+    title = models.CharField(max_length=200)
+    text = models.TextField()
+    created_date = models.DateTimeField(
+            default=timezone.now)
+    published_date = models.DateTimeField(
+            blank=True, null=True)
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(max_length=4096)
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
 
-class Tag(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-class Article(models.Model):
-    title = models.CharField(max_length=100, unique=True)
-    status = models.IntegerField(default=0)
-    content = models.TextField()
-    publish_date = models.DateTimeField(auto_now=True)
-    created_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.title

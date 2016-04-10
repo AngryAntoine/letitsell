@@ -11,13 +11,13 @@
                 <a href="{% url "shop:shop"  %}">All</a>
               </li>
               {% for c in categories %}
-                <li {% if category.slug == c.slug %}class="active"{% endif %}>
+                <li {% if category.slug == c.slug %}{% endif %}>
                   <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
                 </li>
               {% endfor %}
           </ul>
         </div>
-        <div class="col-sm-9" style="margin-top: 30px;">
+        <div class="col-sm-9">
 {#            <!-- Carousel#}
 {#        ================================================== -->#}
 {#        <div id="myCarousel" class="carousel slide" data-ride="carousel">#}
@@ -67,15 +67,17 @@
 {#        </div><!-- /.carousel -->#}
         <h1 class="page-header" style="text-align: center;">Our products</h1>
 		{% for product in products %}
-            <a href="{{ product.get_absolute_url }}">
-            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/star.png" %}{% endif %}">
-            </a>
-            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
-            <p>${{ product.price }}</p>
+            <table class="table table-bordered">
+              <tr>
+                <td style="width: 100px;">
+                  <a href="{{ product.get_absolute_url }}">
+                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/star.png" %}{% endif %}" class="img-responsive" alt="Responsive image">
+                  </a>
+                </td>
+                <td style="width: 70%; vertical-align: middle;"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
+                <td style="width: 30%; vertical-align: middle;">${{ product.price }}</td>
+            </table>
         {% endfor %}
-            <p>${{ product.price }}</p>
-            <p>{{ product.name }}</p>
-
         </div>
      </div>
     </div>

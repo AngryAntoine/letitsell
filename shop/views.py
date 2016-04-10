@@ -1,38 +1,53 @@
-from django.http import Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_POST
 from .models import Product, Category
-
-# Create your views here.
-#
-# def shop(request):
-#     products = Product.objects.filter(available=True)
-#     return render(request, 'shop/product/shop.html', {'products': products})
+from .cart import Cart
+from .forms import CartAddProductForm
 
 
 def shop(request, category_slug=None):
     category = None
     categories = Category.objects.all()
-    products = Product.objects.filter(available=True)
+    products = Product.available_manager.all()
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
-    return render(request, 'shop/product/shop.html', {'category': category,
-                                                      'categories': categories,
-                                                      'products': products})
+    return render(request, 'product/shop.html', {'category': category,
+                                                 'categories': categories,
+                                                 'products': products})
 
 
-# def product_detail(request, id):
-#     try:
-#         product = Product.objects.get(pk=id)
-#     except Product.DoesNotExist:
-#         raise Http404("Product does not exist")
-#     return render(request,
-#                   'shop/product/detail.html',
-#                   {'product': product})
-
-
-def product_detail(request, id, slug=None):
-    product = get_object_or_404(Product, id=id, available=True, slug=slug)
+def product_detail(request, id, slug):
+    product = get_object_or_404(Product, id=id, slug=slug, status='available')
+    cart_product_form = CartAddProductForm()
     return render(request,
-                  'shop/product/detail.html',
-                  {'product': product})
+                  'product/detail.html',
+                  {'product': product,
+                   'cart_product_form': cart_product_form})
+
+
+@require_POST
+def cart_add(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Product, id=product_id)
+    form = CartAddProductForm(request.POST)
+    if form.is_valid():
+        cd = form.cleaned_data
+        cart.add(product=product,
+                 quantity=cd['quantity'],
+                 update_quantity=cd['update'])
+    return redirect('shop:cart_detail')
+
+
+def cart_remove(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Product, id=product_id)
+    cart.remove(product)
+    return redirect('shop:cart_detail')
+
+
+def cart_detail(request):
+    cart = Cart(request)
+    for item in cart:
+        item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
+    return render(request, 'product/cart.html', {'cart': cart})

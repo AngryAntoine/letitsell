@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+
+<div class="container">
+  <div class="jumbotron">
+    <h2>You're now viewing:</h2>
+    <h3>{{ product.name }}</h3>
+    <p class="lead">If you like, be sure to buy it!</p>
+    <form action="{% url "shop:cart_add" product.id %}" method="post">
+      {{ cart_product_form }}
+      {% csrf_token %}
+      <input type="submit" value="Add to basket" class="btn btn-lg btn-success">
+    </form>
+  </div>
+  <div class="row">
+	<div class="col-sm-12"  style="text-align: center;">
+      <table class="table-bordered">
+        <tr>
+          <th class="col-sm-3" style="text-align: center;">
+            Image
+          </th>
+          <th class="col-sm-3" style="text-align: center;">
+            Category
+          </th>
+          <th class="col-sm-2" style="text-align: center;">
+            Price
+          </th>
+          <th class="col-sm-4" style="text-align: center;">
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/star.png" %}{% endif %}">
+          </td>
+          <td>
+            <a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a>
+          </td>
+          <td>
+            ${{ product.price }}
+          </td>
+          <td>
+            {{ product.description|linebreaks }}
+          </td>
+        </tr>
+      </table>
+
+    </div>
+    </div>
+    <br><br><br><br><br>
+</div>
+{% endblock %}

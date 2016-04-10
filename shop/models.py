@@ -4,6 +4,10 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
 
+class AvailableManager(models.Manager):
+    def get_queryset(self):
+        return super(AvailableManager, self).get_queryset().filter(status='available')
+
 @python_2_unicode_compatible
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -11,6 +15,11 @@ class Category(models.Model):
     description = models.TextField(max_length=4096)
 
     slug = models.SlugField(max_length=100, unique=True, verbose_name='slug')
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
 
     def __str__(self):
         return self.name
@@ -21,6 +30,11 @@ class Category(models.Model):
 
 @python_2_unicode_compatible
 class Product(models.Model):
+
+    objects = models.Manager()
+
+    available_manager = AvailableManager()
+
     STATUS_CHOICES = (
         ('available', 'Available'),
         ('sale', 'For Sale'),
@@ -44,13 +58,19 @@ class Product(models.Model):
 
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
-    stock = models.PositiveIntegerField()
+    stock = models.PositiveIntegerField(default=0)
 
     available = models.BooleanField(default=True)
 
     created = models.DateTimeField(auto_now_add=True)
 
     updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-price', '-updated']
+        index_together = (('id', 'slug'),)
+        verbose_name = 'product'
+        verbose_name_plural = 'products'
 
     def __str__(self):
         return self.name
