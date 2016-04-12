@@ -2,29 +2,23 @@
 {% load staticfiles %}
 {% block head_title %}Antoine's blog{% endblock %}
 {% block content %}
-<div class="container" style="margin-top: 30px;" ty>
-      <div class="blog-header">
-        <h1 class="blog-title">The Blog</h1>
-        <p class="lead blog-description">Let the blog begin! Hurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrray!!!</p>
+<div class="container" style="margin-top: 30px;">
+      <div class="page-header">
+        <h1 class="title">The Blog</h1>
+        <p class="lead blog-description">Let the blog begin!</p>
         <hr>
       </div>
 
       <div class="row">
         <div class="col-sm-8 blog-main">
-          <div class="blog-post">
-            <h2 class="blog-post-title">The First Post</h2>
-            <p class="blog-post-meta">April 11, 2016 by <a href="#">Antoine</a>, 20:46</p>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit
-               non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-               condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          {% for post in posts %}
+          <div class="post">
+            <h2 class="title"><a href="{% url 'blog:post_detail' post.id %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaks }}</p>
+            <p class="date">published: {{ post.published_date }} by <a href="#">Antoine</a></p>
           </div>
-          <div class="blog-post">
-            <h2 class="blog-post-title">The Second Post</h2>
-            <p class="blog-post-meta">April 11, 2016 by <a href="#">Antoine</a>, 20:48</p>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit
-               non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-               condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          </div><!-- /.blog-post -->
+          {% endfor %}
+          <!-- /.blog-post -->
 
           <nav>
             <ul class="pager">
