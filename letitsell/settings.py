@@ -64,7 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'shop.context_processors.cart',
+                'shop.processors.context_processors.cart',
             ],
         },
     },
@@ -123,4 +123,4 @@ STATICFILES_DIRS = (
 )
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
-CART_SESSION_ID = 0
+CART_SESSION_ID = 'cart'
