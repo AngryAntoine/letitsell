@@ -35,9 +35,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'home',
     'shop',
     'blog',
+    # 'ckeditor',
+    # 'ckeditor_uploader',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -125,3 +128,21 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
 CART_SESSION_ID = 'cart'
 STATIC_ROOT = 'http://antongramenko.pythonanywhere/static/'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#
+# EMAIL_HOST = 'localhost'
+#
+# EMAIL_HOST_USER = 'antongramenko@gmail.com'
+#
+# EMAIL_PORT = 1025
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_HOST_USER = 'antongramenko@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'khgygdtomhfwxhxu'
+
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True

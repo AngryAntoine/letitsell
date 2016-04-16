@@ -69,13 +69,13 @@
 		{% for product in products %}
             <table class="table table-bordered">
               <tr>
-                <td style="width: 100px;">
+                <td style="width: 30%;">
                   <a href="{{ product.get_absolute_url }}">
                     <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/star.png" %}{% endif %}" class="img-responsive" alt="Responsive image">
                   </a>
                 </td>
-                <td style="width: 70%; vertical-align: middle;"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
-                <td style="width: 30%; vertical-align: middle;">${{ product.price }}</td>
+                <td style="width: 60%; vertical-align: middle;"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
+                <td style="width: 10%; vertical-align: middle;">${{ product.price }}</td>
             </table>
         {% endfor %}
         </div>
