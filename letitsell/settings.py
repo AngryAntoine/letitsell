@@ -141,7 +141,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_HOST_USER = 'antongramenko@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'khgygdtomhfwxhxu'
+EMAIL_HOST_PASSWORD = ''
 
 EMAIL_PORT = 587
 
