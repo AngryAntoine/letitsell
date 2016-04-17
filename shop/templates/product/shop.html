@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-xs-2 col-sm-3 col-md-2 sidebar" style="background-color: #c1e2b3; margin-top: 30px;">
           <ul class="nav nav-sidebar">
-              <h3 style="text-align: center;">Categories</h3>
+              <h3>Categories</h3>
               <li {% if not category %}class="active"{% endif %}>
                 <a href="{% url "shop:shop"  %}">All</a>
               </li>
@@ -15,6 +15,14 @@
                   <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
                 </li>
               {% endfor %}
+              <h3>Latest Products</h3>
+                <div>
+                  {{ latest_products }}
+                </div>
+              <h3>Popular Products</h3>
+                <div>
+                  {{ popular_products }}
+                </div>
           </ul>
         </div>
         <div class="col-xs-10 col-sm-9">
@@ -78,6 +86,40 @@
                 <td style="width: 10%; vertical-align: middle;">${{ product.price }}</td>
             </table>
         {% endfor %}
+         {% if products.object_list and products.paginator.num_pages > 1 %}
+           <div class="pagination" style="margin-top: 20px;">
+             <span class="step-links">
+               {% if products.has_previous %}
+                 <a href= "?page={{ products.previous_page_number }}">newer entries &lt;&lt; </a>
+               {% endif %}
+             <span class="current">
+               &nbsp;Page {{ products.number }} of {{ products.paginator.num_pages }}
+             </span>
+               {% if products.has_next %}
+                 <a href="?page={{ products.next_page_number }}"> &gt;&gt; older entries</a>
+               {% endif %}
+             </span>
+            </div>
+           {% endif %}
+{#        <nav>#}
+{#          <ul class="pagination">#}
+{#            <li>#}
+{#              <a href="#" aria-label="Previous">#}
+{#                <span aria-hidden="true">&laquo;</span>#}
+{#              </a>#}
+{#            </li>#}
+{#            <li><a href="#">1</a></li>#}
+{#            <li><a href="#">2</a></li>#}
+{#            <li><a href="#">3</a></li>#}
+{#            <li><a href="#">4</a></li>#}
+{#            <li><a href="#">5</a></li>#}
+{#            <li>#}
+{#              <a href="#" aria-label="Next">#}
+{#                <span aria-hidden="true">&raquo;</span>#}
+{#              </a>#}
+{#            </li>#}
+{#          </ul>#}
+{#        </nav>#}
         </div>
      </div>
     </div>

@@ -15,15 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from home import views
 from django.conf import settings
 from django.conf.urls.static import static
+from home import views
 
 
 urlpatterns = [
     url(r'^$', views.greeting_page, name='greeting_page'),
+    url(r'^sign/$', views.sign_in_page, name='sign_in_page'),
+    url(r'^profile/$', views.profile_page, name='profile_page'),
+    url(r'^mailing/$', views.send_email, name='send_email'),
     url(r'^shop/', include('shop.urls', namespace='shop')),
     url(r'^blog/', include('blog.urls', namespace='blog')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^admin/', admin.site.urls),
 ]
 

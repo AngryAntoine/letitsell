@@ -36,11 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'ckeditor',
+    'ckeditor_uploader',
     'home',
     'shop',
     'blog',
-    # 'ckeditor',
-    # 'ckeditor_uploader',
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -138,11 +139,14 @@ STATIC_ROOT = 'http://antongramenko.pythonanywhere/static/'
 # EMAIL_PORT = 1025
 
 EMAIL_HOST = 'smtp.gmail.com'
-
 EMAIL_HOST_USER = 'antongramenko@gmail.com'
-
-EMAIL_HOST_PASSWORD = ''
-
+EMAIL_HOST_PASSWORD = 'khgygdtomhfwxhxu'
 EMAIL_PORT = 587
-
 EMAIL_USE_TLS = True
+
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_UPLOAD_SLUGIFY_FILENAME = False
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_BROWSE_SHOW_DIRS = True
+CKEDITOR_IMAGE_BACKEND = "pillow"

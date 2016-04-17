@@ -30,15 +30,21 @@
               <h3 class="masthead-brand">Let it sell</h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Contacts</a></li>
-                  <li><a href="#">Sign In</a></li>
+                  <li class="active">
+                    <a href='{% url 'send_email' %}' rel='tooltip' title='Feel free to contact me on tony1986@yandex.ru'>Contacts</a>
+                  </li>
+                  <li><a href="{% url 'sign_in_page' %}">Sign In</a></li>
                 </ul>
               </nav>
             </div>
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">Hello, Anonimous</h1>
+            {% if user.is_authenticated %}
+              <h1 class="cover-heading">Hello, Antoine</h1>
+              {% else %}
+                <h1 class="cover-heading">Hello, Guest</h1>
+            {% endif %}
             <p class="lead">Don't hesitate to go further into my site.</p>
             <p class="lead">
               <a href="{% url 'shop:shop' %}" class="btn btn-lg btn-success">Push me!</a>

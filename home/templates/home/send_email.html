@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head_title %}Writing letter{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="container">
+        <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="surname" class="col-sm-2 control-label">Your e-mail</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control :focus" id="surname" placeholder="your e-mail">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="comments" class="col-sm-2 control-label">Text</label>
+                <div class="col-sm-10">
+                    <textarea name="" class="form-control :focus" id="comments" cols="30" rows="10">Type here</textarea>
+                </div>
+            </div>
+            <div class="form-group" style="background-color: lightcyan; height: 50px;">
+                <div class="col-sm-offset-2 col-sm-4">
+                  <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Send</button>
+                  <button type="reset" class="btn btn-default" style="margin-top: 10px;">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

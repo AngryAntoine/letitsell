@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head_title %}Your profile{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="page-header" style="text-align: center;">
+            <h1>Edit your profile here <br> <small>It will help us to help you</small></h1>
+        </div>
+        <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Your name</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control :focus" id="name" placeholder="Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="surname" class="col-sm-2 control-label">Surname</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control :focus" id="surname" placeholder="Surname">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ticket_number" class="col-sm-2 control-label">City</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control :focus" id="ticket_number" placeholder="Your city">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="bith_date" class="col-sm-2 control-label">Birth date</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control :focus" id="bith_date" placeholder="Your birth date">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="photo" class="col-sm-2 control-label">Photo</label>
+                <div class="col-sm-4">
+                  <input type="file" id="photo" name="Photo">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="comments" class="col-sm-2 control-label">Additional notes</label>
+                <div class="col-sm-4">
+                    <textarea name="" class="form-control :focus" id="comments" cols="30" rows="10">Tell about yourself</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Remember me
+                    </label>
+                  </div>
+                </div>
+            </div>
+            <div class="form-group" style="background-color: lightcyan; height: 50px;">
+                <div class="col-sm-offset-2 col-sm-4">
+                  <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Save</button>
+                  <button type="reset" class="btn btn-default" style="margin-top: 10px;">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

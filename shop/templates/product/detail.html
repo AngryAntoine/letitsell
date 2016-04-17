@@ -42,6 +42,15 @@
             ${{ product.price }}
           </td>
           <td>
+            <p class="rating">
+                {% if product.views > 1 %}
+                    ({{ product.views }} views)
+                {% elif product.views == 1 %}
+                    ({{ product.views }} view)
+                {% endif %}
+            </p>
+          </td>
+          <td>
             {{ product.description|linebreaks }}
           </td>
         </tr>
