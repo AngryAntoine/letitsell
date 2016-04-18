@@ -140,7 +140,7 @@ STATIC_ROOT = 'http://antongramenko.pythonanywhere/static/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'antongramenko@gmail.com'
-EMAIL_HOST_PASSWORD = 'khgygdtomhfwxhxu'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
