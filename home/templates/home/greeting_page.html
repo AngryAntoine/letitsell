@@ -33,7 +33,13 @@
                   <li class="active">
                     <a href='{% url 'send_email' %}' rel='tooltip' title='Feel free to contact me on tony1986@yandex.ru'>Contacts</a>
                   </li>
-                  <li><a href="{% url 'sign_in_page' %}">Sign In</a></li>
+                  {% if user.is_authenticated %}
+                    <li><a href="{% url 'users:logout' %}">Logout</a></li>
+                    <li><a href="{% url 'users:profile' slug=user.username %}">{{ user.username }}</a></li>
+                  {% else %}
+                    <li><a href="{% url 'users:userprofiles_registration' %}">Register</a></li>
+                    <li><a href="{% url 'users:login' %}">Login</a></li>
+                  {% endif %}
                 </ul>
               </nav>
             </div>
@@ -41,7 +47,7 @@
 
           <div class="inner cover">
             {% if user.is_authenticated %}
-              <h1 class="cover-heading">Hello, Antoine</h1>
+              <h1 class="cover-heading">Hello, {{ user.username }}</h1>
               {% else %}
                 <h1 class="cover-heading">Hello, Guest</h1>
             {% endif %}
@@ -57,9 +63,7 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    	<!-- /container -->        
+         	<!-- /container -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="static/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 		<!-- Latest compiled and minified JavaScript -->
@@ -68,4 +72,6 @@
         <script src="{% static 'js/main.js' %}"></script>
 		<script src="{% static 'js/plugins.js' %}"></script>
     </body>
+</html>
+   </body>
 </html>

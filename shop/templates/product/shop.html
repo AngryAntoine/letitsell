@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load latest_products popular_products %}
 {% block head_title %}This is shop, dude!{% endblock %}
 {% block content %}
-<div class="container-fluid" style="margin-top:30px;">
+{% include 'includes/main_navbar.html'%}
+<div class="container-fluid"
       <div class="row">
         <div class="col-xs-2 col-sm-3 col-md-2 sidebar" style="background-color: #c1e2b3; margin-top: 30px;">
           <ul class="nav nav-sidebar">
@@ -17,11 +19,11 @@
               {% endfor %}
               <h3>Latest Products</h3>
                 <div>
-                  {{ latest_products }}
+                  {% latest_products %}
                 </div>
               <h3>Popular Products</h3>
                 <div>
-                  {{ popular_products }}
+                  {% popular_products %}
                 </div>
           </ul>
         </div>

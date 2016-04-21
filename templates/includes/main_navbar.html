@@ -1,0 +1,41 @@
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'greeting_page' %}" title="Always to the greetings page!">Let it sell</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li role="presentation" {% if '/shop' in request.path %}class="active"{% endif %}><a href="{% url 'shop:shop' %}">Shop</a></li>
+              <li role="presentation" {% if '/cart' in request.path %}class="active"{% endif %}>
+              <a href="{% url 'shop:cart_detail' %}">Cart
+                  {% for item in cart %}
+                    <span class="badge">
+                      {{ item.quantity }}
+                    </span>
+                  {% endfor %}
+                </a>
+              </li>
+              <li role="presentation" {% if '/blog' in request.path %}class="active"{% endif %}><a href="{% url 'blog:post_list' %}">Blog <span class="badge">3</span></a></li>
+              <li role="presentation" {% if '/polls' in request.path %}class="active"{% endif %}><a href="{% url 'polls:index' %}">Polls <span class="badge">7</span></a></li>
+              <li role="presentation" {% if '/profile' in request.path %}class="active"{% endif %}><a href="{% url 'profile_page' %}">Profile</a></li>
+                {% if user.is_authenticated %}
+                  <li><a href="{% url 'users:logout' %}">Logout</a></li>
+                  <li><a href="{% url 'users:profile' slug=user.username %}">{{ user.username }}</a></li>
+                {% else %}
+                  <li><a href="{% url 'users:userprofiles_registration' %}">Register</a></li>
+                  <li><a href="{% url 'users:login' %}">Login</a></li>
+                {% endif %}
+              <li><a href="#">Help</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+              <input type="text" class="form-control" placeholder="Search...">
+            </form>
+          </div>
+        </div>
+    </nav>

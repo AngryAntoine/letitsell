@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'home',
     'shop',
     'blog',
+    'polls',
+    'userprofiles',
 
 ]
 
