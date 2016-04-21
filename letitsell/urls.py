@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^polls/', include('polls.urls', namespace='polls')),
     url(r'^shop/', include('shop.urls', namespace='shop')),
     url(r'^blog/', include('blog.urls', namespace='blog')),
-    url(r'^ckeditor/', include('ckeditor.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^users/', include('userprofiles.urls', namespace="users")),
     url(r'^admin/', admin.site.urls),
 ]
